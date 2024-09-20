@@ -26,6 +26,9 @@ const QuillEditor = forwardRef(({ readOnly, defaultValue, onTextChange, onSelect
     const editorContainer = container.appendChild(container.ownerDocument.createElement("div"));
     const quill = new Quill(editorContainer, {
       theme: "bubble",
+      modules: {
+        toolbar: ["bold", { list: "bullet" }],
+      },
     });
 
     const undoButton = new QuillToolbarButton({
@@ -95,7 +98,10 @@ const QuillEditor = forwardRef(({ readOnly, defaultValue, onTextChange, onSelect
 
   return (
     <div className="flex gap-4">
-      <div className="flex-grow min-h-[300px] rounded border" ref={containerRef}></div>
+      <div
+        className="flex-grow min-h-[300px] text-wrap text-xl max-w-[900px] rounded border bg-gray-900 text-white"
+        ref={containerRef}
+      ></div>
       <div className="w-[300px]">
         <h1 className="text-3xl font-semibold">Comments</h1>
         {comments.map((comment, idx) => (
